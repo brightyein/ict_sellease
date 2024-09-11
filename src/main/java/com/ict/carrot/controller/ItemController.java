@@ -53,6 +53,5 @@ public class ItemController {
   public ResponseEntity<DeleteResponse> deleteItem(@PathVariable Long itemId) {
     return ResponseEntity.ok(itemService.deleteItem(itemId));
   }
-
-
+  
 }
