@@ -33,12 +33,10 @@ public class Item extends BaseTimeEntity{
   @Size(max = 500)
   private String description;
 
-  // User 와 다대일 관계 (여러 상품들은 한 명의 유저에 의해 생성)
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "creator_id")
   private User creator;
 
-  // ItemThumbnail 과 일대다 관계 (하나의 상품은 여러 이미지를 가질 수 있음)
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ItemThumbnail> itemThumbnails = new ArrayList<>();
 
@@ -47,7 +45,7 @@ public class Item extends BaseTimeEntity{
   private Cart cart;
 
   @ManyToOne
-  @JoinColumn(name = "orders_id") // 외래 키 설정
-  private Orders orders; // Order와의 관계를 매핑
+  @JoinColumn(name = "orders_id")
+  private Orders orders;
 
 }

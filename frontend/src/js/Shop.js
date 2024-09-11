@@ -60,7 +60,11 @@ const AddItemModal = ({ isOpen, onClose }) => {
       onClose(); // 모달 닫기
       window.location.href = '/shop';
     } catch (error) {
-      alert('상품 등록에 실패했습니다.');
+      if (error.response && error.response.status === 404) {
+        alert('로그인이 필요합니다.');
+      } else {
+        alert('상품 등록에 실패했습니다.');
+      }
       console.error(error);
     }
   };
