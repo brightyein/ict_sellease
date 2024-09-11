@@ -14,7 +14,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
-          <Route path="/item/:id" element={<ItemDetails />} />
+          <Route path="/product/:id" element={<ItemDetails />} />
           {/* 다른 라우트도 여기에 계속 추가 */}
         </Routes>
       </Router>

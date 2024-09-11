@@ -21,7 +21,7 @@ public class Orders extends BaseTimeEntity{
   private Long id;
 
   @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-  private List<Item> items;
+  private List<Product> products;
 
   @OneToOne(mappedBy = "orders")
   private Pay pay;

@@ -1,6 +1,6 @@
 package com.ict.carrot.service;
 
-import com.ict.carrot.model.Item;
+import com.ict.carrot.model.Product;
 import com.ict.carrot.security.dto.DeleteResponse;
 import java.util.List;
 import java.util.Optional;
@@ -8,11 +8,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ItemService {
 
-  Item saveItem(Item item, List<MultipartFile> images);
+  Product saveItem(Product product, List<MultipartFile> images);
 
-  Optional<Item> getItemDetails(Long itemId);
+  Optional<Product> getItemDetails(Long itemId);
 
-  List<Item> getItems();
+  List<Product> getItems();
 
   DeleteResponse deleteItem(Long itemId);
 }

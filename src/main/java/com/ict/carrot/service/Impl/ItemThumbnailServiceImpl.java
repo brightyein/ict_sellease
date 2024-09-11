@@ -1,6 +1,6 @@
 package com.ict.carrot.service.Impl;
 
-import com.ict.carrot.model.Item;
+import com.ict.carrot.model.Product;
 import com.ict.carrot.model.ItemThumbnail;
 import com.ict.carrot.repository.ItemThumbnailRepository;
 import com.ict.carrot.service.ItemThumbnailService;
@@ -23,7 +23,7 @@ public class ItemThumbnailServiceImpl implements ItemThumbnailService {
 
   /* thumbnail 객체 db 저장 */
   @Override
-  public List<ItemThumbnail> uploadThumbnail(Item item, List<MultipartFile> images) {
+  public List<ItemThumbnail> uploadThumbnail(Product product, List<MultipartFile> images) {
     List<ItemThumbnail> itemThumbnails = new ArrayList<>();
     try {
       // 이미지 저장 경로
@@ -32,7 +32,7 @@ public class ItemThumbnailServiceImpl implements ItemThumbnailService {
       // db 에 thumbnail 객체 저장
       for(MultipartFile image : images) {
         String dbFilePath = saveImage(image, uploadsDir);
-        ItemThumbnail thumbnail = new ItemThumbnail(item, dbFilePath);
+        ItemThumbnail thumbnail = new ItemThumbnail(product, dbFilePath);
         itemThumbnails.add(itemThumbnailRepository.save(thumbnail));
       }
 

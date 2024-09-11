@@ -50,7 +50,7 @@ const AddItemModal = ({ isOpen, onClose }) => {
     images.forEach((image) => formData.append('images', image));
 
     try {
-      await axios.post('http://localhost:8080/item', formData, {
+      await axios.post('http://localhost:8080/product', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -94,7 +94,7 @@ const AddItemModal = ({ isOpen, onClose }) => {
                 {previewImages.length > 0 && (
                     <div className="preview-grid">
                       {previewImages.map((image, index) => (
-                          <div key={index} className="preview-item">
+                          <div key={index} className="preview-product">
                             <img src={image} alt={`preview-${index}`} className="preview-image" />
                             <button className="remove-button" onClick={() => handleRemoveImage(index)}>X</button>
                           </div>
@@ -146,7 +146,7 @@ const MainContent = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/item');
+        const response = await axios.get('http://localhost:8080/product');
         setItems(response.data);
       } catch (error) {
         console.error('상품 데이터를 가져오는 중 오류 발생: ' + error);
@@ -173,16 +173,16 @@ const MainContent = () => {
         <div className="content-header">
           <h1>Main Content Area</h1>
           <p>기업에서 판매를 위해 게시한 상품입니다.</p>
-          <button className="add-item-button" onClick={openModal}>
+          <button className="add-product-button" onClick={openModal}>
             상품 등록하기
           </button>
         </div>
-        <div className="item-grid">
-          {items.map(item => (
-              <div key={item.id} className="item-card">
-                <img src={item.itemThumbnails[0]?.imagePath} alt={item.itemName} className="item-image" />
-                <h2 className="item-name">{item.itemName}</h2>
-                <p>{item.price}원</p>
+        <div className="product-grid">
+          {items.map(product => (
+              <div key={product.id} className="product-card">
+                <img src={product.itemThumbnails[0]?.imagePath} alt={product.itemName} className="product-image" />
+                <h2 className="product-name">{product.itemName}</h2>
+                <p>{product.price}원</p>
               </div>
           ))}
         </div>

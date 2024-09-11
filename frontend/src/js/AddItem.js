@@ -27,7 +27,7 @@ const AddItemForm = () => {  // 이름을 변경
     images.forEach((image) => formData.append('images', image));
 
     try {
-      const response = await axios.post('http://localhost:8080/item', formData, {
+      const response = await axios.post('http://localhost:8080/product', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -41,9 +41,9 @@ const AddItemForm = () => {  // 이름을 변경
   };
 
   return (
-      <div id="add-item-page" className="add-item-container">
+      <div id="add-product-page" className="add-product-container">
         <h2>상품 등록</h2>
-        <form onSubmit={handleSubmit} className="add-item-form">
+        <form onSubmit={handleSubmit} className="add-product-form">
           <div className="form-group">
             <label htmlFor="images">이미지 업로드</label>
             <input
@@ -90,7 +90,7 @@ const AddItemForm = () => {  // 이름을 변경
 
 const AddItemPage = () => {  // 상위 컴포넌트 이름을 변경
   return (
-      <div id="add-item-page">
+      <div id="add-product-page">
         <Header />
         <AddItemPage />  {/* 변경된 컴포넌트 이름 사용 */}
       </div>

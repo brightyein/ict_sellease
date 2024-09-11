@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import lombok.Data;
 
 @Entity
+@Data
 public class Cart {
 
   @Id
@@ -16,7 +18,7 @@ public class Cart {
   private Long Id;
 
   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-  private List<Item> items;
+  private List<Product> products;
 
   private int totalAmount; // 상품 총 갯수
 

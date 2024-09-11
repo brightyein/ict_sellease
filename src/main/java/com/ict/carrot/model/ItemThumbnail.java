@@ -1,7 +1,6 @@
 package com.ict.carrot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,10 +30,10 @@ public class ItemThumbnail extends BaseTimeEntity{
   @ManyToOne
   @JoinColumn(name = "item_id", nullable = false)
   @JsonIgnore
-  private Item item;
+  private Product product;
 
-  public ItemThumbnail(Item item, String imagePath) {
-    this.item = item;
+  public ItemThumbnail(Product product, String imagePath) {
+    this.product = product;
     this.imagePath = imagePath;
   }
 }
