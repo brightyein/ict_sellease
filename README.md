@@ -1,10 +1,8 @@
-![](https://github.com/rimmelasghar/SpringBoot-boilerPlate/blob/main/imgs/springboot-boilerplate.jpg)
-
 # ICT-Carrot
 
 ## Description
 
-Spring Boot 기반의 이커머스 Backend를 구현해보는 학습용 프로젝트입니다. 
+Spring Boot 기반의 이커머스 Fontend, Backend를 구현해보는 학습용 프로젝트입니다.
 
 ## Table of Contents
 
@@ -19,8 +17,14 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD=tpfflwm -e MYSQL_DATABASE=carrot 
 
 ## Installation Application
 
+### 백앤드 애플리케이션 설치
+
 ```
 git clone https://userid@bitbucket.org/ict_sellease/backend.git
 cd backend
 
 ```
+
+### 프론트앤드 애플리케이션 설치 및 실행
+
+`frontend/README.md`를 참고하여 프론트앤드 애플리케이션을 설치하고 실행합니다.

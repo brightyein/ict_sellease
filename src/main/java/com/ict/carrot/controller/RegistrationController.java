@@ -7,13 +7,14 @@ import com.ict.carrot.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-// rimmel asghar
 @CrossOrigin
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/register")
 public class RegistrationController {

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 
-// rimmel asghar
 @Getter
 @Setter
 @NoArgsConstructor

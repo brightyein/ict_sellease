@@ -1,12 +1,14 @@
 package com.ict.carrot.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import lombok.*;
 
 import javax.persistence.*;
 
-// rimmel asghar
-@Getter
-@Setter
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -18,13 +20,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank
 	private String name;
 
 	@Column(unique = true)
 	private String username;
 
+	@NotBlank
+	@Pattern(regexp = "/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/")
 	private String password;
 
+	@Email(message="이메일 형식을 확인해주세요.")
 	private String email;
 
 	@Enumerated(EnumType.STRING)

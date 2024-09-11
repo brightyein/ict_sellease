@@ -1,0 +1,352 @@
+/* 기본 설정 */
+#shop-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+#shop-page body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#shop-page .container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* 로고와 메뉴를 같은 줄에 배치 */
+  justify-content: space-between; /* 로고와 메뉴 간의 간격을 적절히 분배 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+/* 모달 배경 스타일 */
+#shop-page .modal-overlay {
+  position: fixed; /* 화면 전체를 덮는 고정 위치 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+  display: flex;
+  justify-content: center; /* 가로로 중앙 배치 */
+  align-items: center; /* 세로로 중앙 배치 */
+  z-index: 1000; /* 다른 콘텐츠 위에 나타나도록 설정 */
+}
+
+/* 모달 창 스타일 */
+#shop-page .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 1000px;
+  width: 100%;
+  height: 1000px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+  position: relative;
+  z-index: 1001; /* 모달 오버레이 위에 표시되도록 설정 */
+}
+
+/* 모달 닫기 버튼 스타일 초기화 */
+#shop-page .modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent; /* 배경색 제거 */
+  border: none; /* 테두리 제거 */
+  font-size: 24px; /* 버튼의 크기 */
+  font-weight: bold; /* 버튼의 두께를 굵게 */
+  color: #333; /* 기본 텍스트 색상 */
+  cursor: pointer; /* 마우스 커서 변경 */
+  transition: color 0.3s ease; /* 색상 전환 효과 */
+  line-height: 1; /* 텍스트가 중앙에 위치하도록 설정 */
+  padding: 0; /* 버튼의 기본 패딩 제거 */
+  display: inline-block; /* 버튼을 인라인 블록으로 표시 */
+}
+
+/* 모달 닫기 버튼에 대한 텍스트 그림자나 투명도 문제 제거 */
+#shop-page .modal-close-button:focus,
+#shop-page .modal-close-button:active {
+  outline: none; /* 클릭 또는 포커스 시 외곽선 제거 */
+  box-shadow: none; /* 그림자 제거 */
+}
+
+#shop-page .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+#shop-page .modal-body {
+  padding: 10px 0;
+}
+
+/* 폼 그룹 스타일: 상품 등록과 설명 입력 칸의 간격 추가 */
+#shop-page .form-group {
+  margin-bottom: 20px; /* 각 form-group 간의 아래쪽 여백 추가 */
+}
+
+#shop-page .form-group label {
+  display: block;
+  margin-bottom: 8px; /* 라벨과 입력 필드 사이 간격 */
+  font-weight: bold;  /* 라벨을 조금 더 강조 */
+}
+
+#shop-page .form-group input,
+#shop-page .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* 이미지 업로드 박스 스타일 */
+#shop-page .upload-box {
+  width: 100%;
+  max-width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#shop-page .upload-box:hover {
+  background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}
+
+/* 카메라 아이콘 스타일 */
+#shop-page .camera-icon {
+  font-size: 3rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* 이미지 미리보기 그리드 */
+#shop-page .preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#shop-page .preview-item {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+#shop-page .preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 미리보기 이미지 컨테이너 */
+#shop-page .preview-item {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* 이미지 삭제 버튼 (x) */
+#shop-page .remove-button {
+  position: absolute;
+  top: -5px; /* 이미지의 위쪽 바깥으로 이동 */
+  right: -5px; /* 이미지의 오른쪽 바깥으로 이동 */
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  padding: 0;
+}
+
+/* 상품 등록하기 버튼 스타일 */
+#shop-page .add-item-button {
+  background-color: #19B5FE;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+#shop-page .add-item-button:hover {
+  background-color: #1281B3;
+}
+
+/* 메인 컨텐츠 스타일 */
+#shop-page #main-content {
+  background-color: white;
+  padding: 2em;
+  flex-grow: 1;
+  margin-top: 40px; /* 헤더 높이를 반영 */
+  text-align: center;
+}
+
+/* 상품 등록하기 버튼 스타일 */
+#shop-page #main-content .add-item-button a {
+  color: inherit;
+  text-decoration: none;
+  display: block; /* a 태그가 block 수준 요소로 동작 */
+  width: 100%;
+  height: 100%;
+}
+
+#shop-page #main-content .add-item-button {
+  background-color: #c8c8c8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  float: start; /* 버튼을 오른쪽에 위치 */
+  margin-left: 810px;
+  align-items: center;  /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  height: 40px; /* 버튼 높이를 적절히 설정 */
+  line-height: 23px; /* 버튼 높이와 일치하여 텍스트 수직 중앙 정렬 */
+  margin-bottom: 20px; /* 아래쪽 여백 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+#shop-page #main-content .add-item-button:hover {
+  background-color: #828282;
+}
+
+#shop-page #main-content .add-item-button:active {
+  background-color: #505050;
+}
+
+/* 기존 내용 유지 */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 상품 그리드 */
+#shop-page .item-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 카드 간의 간격 */
+  justify-content: center; /* 가운데 정렬 */
+  margin-top: 2em;
+  max-width: 1200px; /* 그리드의 최대 너비 설정 */
+  margin-left: auto; /* 가운데 정렬 */
+  margin-right: auto; /* 가운데 정렬 */
+}
+
+/* 상품 카드 */
+#shop-page .item-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 calc(33.333% - 40px); /* 한 줄에 3개의 카드, 카드 사이 여백 포함 */
+  min-width: 250px; /* 최소 너비 설정 */
+  max-width: 300px; /* 최대 너비 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px; /* 카드 사이의 세로 간격 */
+}
+
+#shop-page .item-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#shop-page .item-name {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#shop-page .item-description {
+  color: #777;
+  font-size: 0.9em;
+}
+
+/* 더보기 버튼 컨테이너 스타일 */
+#shop-page .load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 더보기 버튼 스타일 */
+.load-more-button {
+  background-color: #19B5FE;
+  color: white;
+  border: none;
+  padding: 10px 15px !important;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;  /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  height: 45px; /* 버튼 높이를 적절히 설정 */
+}
+
+/* 더보기 버튼 호버 스타일 */
+#shop-page .load-more-button:hover {
+  background-color: #1281B3;
+}
+
+/* 더보기 버튼 활성화 상태 */
+#shop-page .load-more-button:active {
+  background-color: #0F648D;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  #shop-page #header nav ul {
+    flex-direction: column;
+  }
+
+  #shop-page #sidebar {
+    width: 100%;
+    position: relative;
+    min-height: auto;
+    padding: 1em 0;
+    top: 0;
+  }
+
+  #shop-page #main-content {
+    margin-left: 0;
+    padding: 1em;
+  }
+
+  #shop-page .item-card {
+    flex: 1 1 100%; /* 작은 화면에서는 한 줄에 1개 */
+  }
+
+}

@@ -5,7 +5,6 @@ import com.ict.carrot.security.dto.AuthenticatedUserDto;
 import com.ict.carrot.security.dto.RegistrationRequest;
 import com.ict.carrot.security.dto.RegistrationResponse;
 
-// rimmel asghar
 public interface UserService {
 
 	User findByUsername(String username);

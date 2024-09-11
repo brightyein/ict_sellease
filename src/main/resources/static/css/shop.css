@@ -1,0 +1,106 @@
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* 로고와 메뉴를 같은 줄에 배치 */
+  justify-content: space-between; /* 로고와 메뉴 간의 간격을 적절히 분배 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+/* 헤더 스타일 */
+#header {
+  background-color: #282828;
+  color: #fff;
+  padding: 0.5em 0; /* 헤더 패딩을 줄임 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header .logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em; /* 폰트 크기 조정 */
+  font-weight: bold;
+}
+
+.logo-link {
+  display: inline-block;
+  margin-left: -90px; /* 필요한 만큼 값을 조정하세요 */
+}
+
+.logo-image {
+  height: 20px;
+  width: auto;
+}
+
+#header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* 메뉴 항목을 수직 중앙 정렬 */
+}
+
+#header nav ul li {
+  margin-left: 2em; /* 메뉴 항목 간의 간격 설정 */
+}
+
+#header nav ul li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#header nav ul li a:hover {
+  color: #19B5FE;
+}
+
+/* 메인 컨텐츠 스타일 */
+#main-content {
+  background-color: ivory;
+  padding: 2em;
+  flex-grow: 1;
+  margin-top: 40px; /* 헤더 높이를 반영 */
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  #header nav ul {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    position: relative;
+    min-height: auto;
+    padding: 1em 0;
+    top: 0;
+  }
+
+  #main-content {
+    margin-left: 0;
+    padding: 1em;
+  }
+}

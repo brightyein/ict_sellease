@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="login-container">
+  <h1>로그인</h1>
+  <!-- th:action에서 서버로 POST 요청을 보내는 경로 설정 -->
+  <form id="loginForm" th:action="@{/login}" method="post" th:object="${loginRequest}">
+    <div class="input-group">
+      <label for="username">사용자 이름:</label>
+      <input type="text" id="username" th:field="*{username}" required/>
+    </div>
+    <div class="input-group">
+      <label for="password">비밀번호:</label>
+      <input type="password" id="password" th:field="*{password}" required/>
+    </div>
+    <div class="button-group">
+      <!-- 버튼 클릭 시 기본 폼 제출 방지를 위해 type="button" 설정 -->
+      <button type="button" id="loginButton">로그인</button>
+    </div>
+  </form>
+  <!-- 에러 메시지를 표시하기 위한 div -->
+  <div id="error-message" style="color: red; display: none;">로그인에 실패했습니다. 입력 정보를 확인하세요.</div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#loginButton').click(function(event) {
+      event.preventDefault(); // 기본 폼 제출 방지
+
+      // 폼 데이터를 가져와 객체로 저장
+      var formData = {
+        username: $('#username').val(),
+        password: $('#password').val()
+      };
+
+      // AJAX 요청을 사용하여 서버로 폼 데이터 전송
+      $.ajax({
+        url: '/login',
+        type: 'POST',
+        contentType: 'application/x-www-form-urlencoded', // 폼 데이터 형식
+        data: formData,
+        success: function(response) {
+          console.log('Login successful:', response);
+          // 로그인 성공 시 리디렉션 또는 다른 동작 수행
+          window.location.href = '/'; // 로그인 성공 시 이동할 페이지
+        },
+        error: function(xhr, status, error) {
+          console.error('Login failed:', error);
+          // 로그인 실패 시 에러 메시지 표시
+          $('#error-message').text('로그인에 실패했습니다. 입력 정보를 확인하세요.').show();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
