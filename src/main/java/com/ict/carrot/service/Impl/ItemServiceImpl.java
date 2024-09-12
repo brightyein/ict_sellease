@@ -1,6 +1,8 @@
 package com.ict.carrot.service.Impl;
 
 import static com.ict.carrot.exception.ErrorCode.ITEM_NOT_FOUND;
+import static com.ict.carrot.exception.ErrorCode.UNAUTHORIZED;
+import static com.ict.carrot.exception.ErrorCode.USER_NOT_FOUND;
 
 import com.ict.carrot.exception.ApiException;
 import com.ict.carrot.exception.ApiExceptionResponse;
@@ -34,21 +36,39 @@ public class ItemServiceImpl implements ItemService {
   /* 상품 등록 */
   @Override
   public Item saveItem(Item item, List<MultipartFile> images) {
-    // 인증된 사용자 정보 추출
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    try {
+      // 인증된 사용자 정보 추출
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    // 추출한 정보로 User 객체 조회
-    User user = userRepository.findByUsername(userDetails.getUsername());
-    item.setCreator(user);
+      // 인증되지 않았을 때 NullPointerException을 방지하기 위해 확인
+      if (authentication == null || !authentication.isAuthenticated()) {
+        throw new ApiException(UNAUTHORIZED);
+      }
 
-    // 상품 등록
-    Item saveItem = itemRepository.save(item);
+      UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-    // 이미지 저장
-    saveItem.setItemThumbnails(itemThumbnailService.uploadThumbnail(saveItem, images));
+      // 추출한 정보로 User 객체 조회
+      User user = userRepository.findByUsername(userDetails.getUsername());
 
-    return saveItem;
+      if (user == null) {
+        throw new ApiException(USER_NOT_FOUND);
+      }
+
+      item.setCreator(user);
+
+      // 상품 등록
+      Item saveItem = itemRepository.save(item);
+
+      // 이미지 저장
+      saveItem.setItemThumbnails(itemThumbnailService.uploadThumbnail(saveItem, images));
+
+      return saveItem;
+    } catch (ClassCastException e) {
+      throw new ApiException(USER_NOT_FOUND);
+    } catch (Exception e) {
+      // 다른 예외에 대한 처리
+      throw new RuntimeException("상품 등록 중 문제가 발생했습니다.", e);
+    }
   }
 
   /* 상품 상세 조회 */

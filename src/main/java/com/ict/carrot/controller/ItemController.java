@@ -30,8 +30,7 @@ public class ItemController {
   /* 상품 등록 */
   @PostMapping
   public ResponseEntity<Item> addItem(@ModelAttribute Item item, @RequestParam("images") List<MultipartFile> images) {
-    Item saveItem = itemService.saveItem(item, images);
-    return ResponseEntity.ok(saveItem);
+    return ResponseEntity.ok(itemService.saveItem(item, images));
   }
 
   /* 상품 상세 조회 */
