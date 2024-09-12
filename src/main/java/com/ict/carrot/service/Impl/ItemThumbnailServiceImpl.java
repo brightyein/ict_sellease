@@ -27,7 +27,7 @@ public class ItemThumbnailServiceImpl implements ItemThumbnailService {
     List<ItemThumbnail> itemThumbnails = new ArrayList<>();
     try {
       // 이미지 저장 경로
-      String uploadsDir = "src/main/front/public/images/itemThumbnail/";
+      String uploadsDir = "src/main/resources/static/images/itemThumbnail/";
 
       // db 에 thumbnail 객체 저장
       for(MultipartFile image : images) {
