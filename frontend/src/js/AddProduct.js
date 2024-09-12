@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../css/AddItem.css';
+import '../css/AddProduct.css';
 import Header from './Header';
 
 const AddItemForm = () => {  // 이름을 변경

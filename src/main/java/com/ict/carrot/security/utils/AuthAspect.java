@@ -16,17 +16,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @AllArgsConstructor
-public class AuthAspect {
+public class AuthAspect { // 인증된 사용자 확인 aspect
 
   private final UserService userService;
 
-  @Target(ElementType.METHOD)
-  @Retention(RetentionPolicy.RUNTIME)
-  public @interface AuthenticatedUser {
-  }
-
   @Around("@annotation(AuthenticatedUser)")
   public Object setAuthenticatedUser(ProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println("도착!!!!");
     // 인증된 사용자 정보 추출
     User user = userService.getAuthenticatedUser();
 

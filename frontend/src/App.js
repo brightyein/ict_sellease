@@ -4,8 +4,8 @@ import Shop from './js/Shop';
 import './css/App.css';
 import Login from "./js/Login";
 import Home from "./js/Home";
-import AddItem from "./js/AddItem";
-import ItemDetails from "./js/ItemDetails";
+import AddProduct from "./js/AddProduct";
+import ProductDetails from "./js/ProductDetails";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ItemDetails />} />
+          {/* <Route path="/product/:id" element={< />} /> */}
           {/* 다른 라우트도 여기에 계속 추가 */}
         </Routes>
       </Router>

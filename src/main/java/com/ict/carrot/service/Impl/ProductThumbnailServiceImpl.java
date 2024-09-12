@@ -1,9 +1,9 @@
 package com.ict.carrot.service.Impl;
 
 import com.ict.carrot.model.Product;
-import com.ict.carrot.model.ItemThumbnail;
+import com.ict.carrot.model.ProductThumbnail;
 import com.ict.carrot.repository.ItemThumbnailRepository;
-import com.ict.carrot.service.ItemThumbnailService;
+import com.ict.carrot.service.ProductThumbnailService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,14 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
-public class ItemThumbnailServiceImpl implements ItemThumbnailService {
+public class ProductThumbnailServiceImpl implements ProductThumbnailService {
 
   private final ItemThumbnailRepository itemThumbnailRepository;
 
   /* thumbnail 객체 db 저장 */
   @Override
-  public List<ItemThumbnail> uploadThumbnail(Product product, List<MultipartFile> images) {
-    List<ItemThumbnail> itemThumbnails = new ArrayList<>();
+  public List<ProductThumbnail> uploadThumbnail(Product product, List<MultipartFile> images) {
+    List<ProductThumbnail> productThumbnails = new ArrayList<>();
     try {
       // 이미지 저장 경로
       String uploadsDir = "src/main/front/public/images/itemThumbnail/";
@@ -32,14 +32,14 @@ public class ItemThumbnailServiceImpl implements ItemThumbnailService {
       // db 에 thumbnail 객체 저장
       for(MultipartFile image : images) {
         String dbFilePath = saveImage(image, uploadsDir);
-        ItemThumbnail thumbnail = new ItemThumbnail(product, dbFilePath);
-        itemThumbnails.add(itemThumbnailRepository.save(thumbnail));
+        ProductThumbnail thumbnail = new ProductThumbnail(product, dbFilePath);
+        productThumbnails.add(itemThumbnailRepository.save(thumbnail));
       }
 
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return itemThumbnails;
+    return productThumbnails;
   }
 
   /* 이미지 저장 */

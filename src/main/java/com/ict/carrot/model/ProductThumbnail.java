@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table
-public class ItemThumbnail extends BaseTimeEntity{
+public class ProductThumbnail extends BaseTimeEntity{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class ItemThumbnail extends BaseTimeEntity{
   private String imagePath;
 
   @ManyToOne
-  @JoinColumn(name = "item_id", nullable = false)
+  @JoinColumn(name = "product_id", nullable = false)
   @JsonIgnore
   private Product product;
 
-  public ItemThumbnail(Product product, String imagePath) {
+  public ProductThumbnail(Product product, String imagePath) {
     this.product = product;
     this.imagePath = imagePath;
   }

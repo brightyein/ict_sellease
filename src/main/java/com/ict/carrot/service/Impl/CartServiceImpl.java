@@ -6,7 +6,7 @@ import com.ict.carrot.model.Product;
 import com.ict.carrot.repository.CartRepository;
 import com.ict.carrot.repository.ProductRepository;
 import com.ict.carrot.security.service.UserService;
-import com.ict.carrot.security.utils.AuthAspect.AuthenticatedUser;
+import com.ict.carrot.security.utils.AuthenticatedUser;
 import com.ict.carrot.service.CartService;
 import java.util.ArrayList;
 import java.util.List;

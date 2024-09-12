@@ -4,8 +4,8 @@ import axios from 'axios';
 import Header from './Header';
 
 // 상품 등록 모달 컴포넌트
-const AddItemModal = ({ isOpen, onClose }) => {
-  const [itemName, setItemName] = useState('');
+const AddProductModal = ({ isOpen, onClose }) => {
+  const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
@@ -44,7 +44,7 @@ const AddItemModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     const formData = new FormData();
     const token = localStorage.getItem('token');
-    formData.append('itemName', itemName);
+    formData.append('name', name);
     formData.append('price', price);
     formData.append('description', description);
     images.forEach((image) => formData.append('images', image));
@@ -107,11 +107,11 @@ const AddItemModal = ({ isOpen, onClose }) => {
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="itemName">제목</label>
+                <label htmlFor="name">제목</label>
                 <textarea
-                    id="itemName"
-                    value={itemName}
-                    onChange={(e) => setItemName(e.target.value)}
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                 />
               </div>
@@ -143,24 +143,24 @@ const AddItemModal = ({ isOpen, onClose }) => {
 };
 
 const MainContent = () => {
-  const [items, setItems] = useState([]);
-  const [visibleItems, setVisibleItems] = useState(9);
+  const [products, setProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState(9);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/product');
-        setItems(response.data);
+        setProducts(response.data);
       } catch (error) {
         console.error('상품 데이터를 가져오는 중 오류 발생: ' + error);
       }
     };
-    fetchItems();
+    fetchProducts();
   }, []);
 
   const handleLoadMore = () => {
-    setVisibleItems((prevVisibleItems) => prevVisibleItems + 6);
+    setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 6);
   };
 
   const openModal = () => {
@@ -182,10 +182,10 @@ const MainContent = () => {
           </button>
         </div>
         <div className="product-grid">
-          {items.map(product => (
+          {products.map(product => (
               <div key={product.id} className="product-card">
-                <img src={product.itemThumbnails[0]?.imagePath} alt={product.itemName} className="product-image" />
-                <h2 className="product-name">{product.itemName}</h2>
+                <img src={product.productThumbnails[0]?.imagePath} alt={product.name} className="product-image" />
+                <h2 className="product-name">{product.name}</h2>
                 <p>{product.price}원</p>
               </div>
           ))}
@@ -196,7 +196,7 @@ const MainContent = () => {
 
         {/* 상품 등록 모달 */}
         {isModalOpen && (
-            <AddItemModal isOpen={isModalOpen} onClose={closeModal} />
+            <AddProductModal isOpen={isModalOpen} onClose={closeModal} />
         )}
       </main>
   );

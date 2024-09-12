@@ -1,5 +1,6 @@
 package com.ict.carrot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Product extends BaseTimeEntity{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String itemName;
+  private String name;
 
   @PositiveOrZero
   @NotNull(message = "가격은 필수 입력 값 입니다.")
@@ -37,15 +38,17 @@ public class Product extends BaseTimeEntity{
   @JoinColumn(name = "creator_id")
   private User creator;
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<ItemThumbnail> itemThumbnails = new ArrayList<>();
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ProductThumbnail> productThumbnails = new ArrayList<>();
 
   @ManyToOne
   @JoinColumn(name = "cart_id")
+  @JsonIgnore
   private Cart cart;
 
   @ManyToOne
   @JoinColumn(name = "orders_id")
+  @JsonIgnore
   private Orders orders;
 
 }
