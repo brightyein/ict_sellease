@@ -30,8 +30,8 @@ public class ProductController {
 
   /* 상품 등록 */
   @PostMapping
-  public ResponseEntity<Product> addProduct(@ModelAttribute Product item, @RequestParam("images") List<MultipartFile> images) {
-    return ResponseEntity.ok(productService.saveProduct(item, images));
+  public ResponseEntity<Product> addProduct(@ModelAttribute Product product, @RequestParam("images") List<MultipartFile> images) {
+    return ResponseEntity.ok(productService.saveProduct(product, images));
   }
 
   /* 상품 상세 조회 */

@@ -177,7 +177,7 @@ const MainContent = () => {
   const getProductDetail = (id) => {
     // 클릭 시 아이템의 상세 페이지로 이동
     //window.location.href = `/item/${id}`;
-    navigate(`/item/${id}`);
+    navigate(`/product/${id}`);
   };
 
 
