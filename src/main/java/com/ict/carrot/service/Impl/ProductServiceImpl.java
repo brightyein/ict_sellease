@@ -101,4 +101,51 @@ public class ProductServiceImpl implements ProductService {
     return deleteResponse;
   }
 
+  @Override
+  public Product updateProduct(Long productId, Product updatedProduct, List<MultipartFile> images) {
+    try {
+      // 인증된 사용자 정보 추출
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+      if (authentication == null || !authentication.isAuthenticated()) {
+        throw new ApiException(UNAUTHORIZED);
+      }
+
+      UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+      User user = userRepository.findByUsername(userDetails.getUsername());
+
+      if (user == null) {
+        throw new ApiException(USER_NOT_FOUND);
+      }
+
+      // 기존 상품 조회
+      Optional<Product> existingProductOptional = productRepository.findById(productId);
+      if (existingProductOptional.isEmpty()) {
+        throw new ApiException(PRODUCT_NOT_FOUND);
+      }
+
+      Product existingProduct = existingProductOptional.get();
+
+      // 수정할 상품 정보 업데이트
+      existingProduct.setName(updatedProduct.getName());
+      existingProduct.setPrice(updatedProduct.getPrice());
+      existingProduct.setDescription(updatedProduct.getDescription());
+      // 필요한 다른 필드들 업데이트
+
+      // 현재 상품의 이미지를 업데이트하거나 새 이미지를 추가
+      if (images != null && !images.isEmpty()) {
+        existingProduct.setProductThumbnails(productThumbnailService.uploadThumbnail(existingProduct, images));
+      }
+
+      // 상품 저장
+      return productRepository.save(existingProduct);
+
+    } catch (ClassCastException e) {
+      throw new ApiException(USER_NOT_FOUND);
+    } catch (Exception e) {
+      throw new RuntimeException("상품 수정 중 문제가 발생했습니다.", e);
+    }
+  }
+
+
 }

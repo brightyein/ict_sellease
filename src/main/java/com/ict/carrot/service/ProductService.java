@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
 
+  Product updateProduct(Long productId, Product product, List<MultipartFile> images);
+
   Product saveProduct(Product product, List<MultipartFile> images);
 
   Optional<Product> getProductDetails(Long productId);
