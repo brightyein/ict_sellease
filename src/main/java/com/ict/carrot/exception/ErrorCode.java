@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
-  ITEM_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 아이템입니다."), // 404
+  PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 아이템입니다."), // 404
   USER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."), // 404
   UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "인증되지 않은 사용자입니다."); // 401
 

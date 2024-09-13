@@ -27,7 +27,6 @@ public class User {
 	private String username;
 
 	@NotBlank
-	@Pattern(regexp = "/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/")
 	private String password;
 
 	@Email(message="이메일 형식을 확인해주세요.")

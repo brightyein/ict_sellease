@@ -1,8 +1,8 @@
 package com.ict.carrot.repository;
 
-import com.ict.carrot.model.Item;
+import com.ict.carrot.model.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface CartRepository extends JpaRepository<Cart, Long> {
 
 }
