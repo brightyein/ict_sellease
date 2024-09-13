@@ -2,7 +2,7 @@ package com.ict.carrot.service.Impl;
 
 import com.ict.carrot.model.Product;
 import com.ict.carrot.model.ProductThumbnail;
-import com.ict.carrot.repository.ItemThumbnailRepository;
+import com.ict.carrot.repository.ProductThumbnailRepository;
 import com.ict.carrot.service.ProductThumbnailService;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class ProductThumbnailServiceImpl implements ProductThumbnailService {
 
-  private final ItemThumbnailRepository itemThumbnailRepository;
+  private final ProductThumbnailRepository itemThumbnailRepository;
 
   /* thumbnail 객체 db 저장 */
   @Override

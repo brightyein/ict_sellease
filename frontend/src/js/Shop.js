@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../css/Shop.css';
 import axios from 'axios';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 // 상품 등록 모달 컴포넌트
 const AddProductModal = ({ isOpen, onClose }) => {
@@ -172,6 +173,14 @@ const MainContent = () => {
     setIsModalOpen(false);
   };
 
+  const navigate = useNavigate();
+  const getProductDetail = (id) => {
+    // 클릭 시 아이템의 상세 페이지로 이동
+    //window.location.href = `/item/${id}`;
+    navigate(`/item/${id}`);
+  };
+
+
   return (
       <main id="main-content">
         <div className="content-header">
@@ -183,7 +192,7 @@ const MainContent = () => {
         </div>
         <div className="product-grid">
           {products.map(product => (
-              <div key={product.id} className="product-card">
+              <div key={product.id} className="product-card"  onClick={() => getProductDetail(product.id)}>
                 <img src={product.productThumbnails[0]?.imagePath} alt={product.name} className="product-image" />
                 <h2 className="product-name">{product.name}</h2>
                 <p>{product.price}원</p>
