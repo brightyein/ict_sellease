@@ -67,7 +67,6 @@ body, h1, p, form, input, button {
 /* 버튼 스타일 */
 #login-page button[type="submit"] {
   width: 100%;
-  padding: 10px;
   background-color: #007bff;
   border: none;
   border-radius: 4px;

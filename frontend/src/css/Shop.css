@@ -21,7 +21,7 @@
   margin: 0 auto;
   display: flex; /* 로고와 메뉴를 같은 줄에 배치 */
   justify-content: space-between; /* 로고와 메뉴 간의 간격을 적절히 분배 */
-  align-products: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
 /* 모달 배경 스타일 */
@@ -34,7 +34,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
   display: flex;
   justify-content: center; /* 가로로 중앙 배치 */
-  align-products: center; /* 세로로 중앙 배치 */
+  align-items: center; /* 세로로 중앙 배치 */
   z-index: 1000; /* 다른 콘텐츠 위에 나타나도록 설정 */
 }
 
@@ -79,7 +79,7 @@
 #shop-page .modal-header {
   display: flex;
   justify-content: space-between;
-  align-products: center;
+  align-items: center;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
 }
@@ -116,7 +116,7 @@
   border: 2px dashed #ccc;
   display: flex;
   flex-direction: column;
-  align-products: center;
+  align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -225,7 +225,7 @@
   transition: background-color 0.3s ease;
   float: start; /* 버튼을 오른쪽에 위치 */
   margin-left: 810px;
-  align-products: center;  /* 수직 중앙 정렬 */
+  align-items: center;  /* 수직 중앙 정렬 */
   justify-content: center; /* 수평 중앙 정렬 */
   height: 40px; /* 버튼 높이를 적절히 설정 */
   line-height: 23px; /* 버튼 높이와 일치하여 텍스트 수직 중앙 정렬 */
@@ -272,7 +272,7 @@
   max-width: 300px; /* 최대 너비 설정 */
   display: flex;
   flex-direction: column;
-  align-products: center;
+  align-items: center;
   text-align: center;
   margin-bottom: 20px; /* 카드 사이의 세로 간격 */
 }
@@ -312,7 +312,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
-  align-products: center;  /* 수직 중앙 정렬 */
+  align-items: center;  /* 수직 중앙 정렬 */
   justify-content: center; /* 수평 중앙 정렬 */
   height: 45px; /* 버튼 높이를 적절히 설정 */
 }

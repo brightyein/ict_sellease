@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react';
 import axios from 'axios';
-import '../css/GetItem.css';
 import Header from './Header';
 import { useParams } from 'react-router-dom';
 

@@ -296,7 +296,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
-  height: 2.85em;
+  height: 2.85em !important;
   line-height: 2.95em;
   padding: 0 1.5em;
   text-align: center;
