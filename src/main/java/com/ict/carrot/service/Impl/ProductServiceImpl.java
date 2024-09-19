@@ -34,15 +34,10 @@ public class ProductServiceImpl implements ProductService {
   /* 상품 등록 */
   @Override
   @AuthenticatedUser
-  public Product saveProduct(Product product, List<MultipartFile> images) {
+  public Product saveProduct(Product product, List<MultipartFile> images, Optional<User> user) {
 
-      // 인증된 사용자 정보 추출
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-      // 추출한 정보로 User 객체 조회
-      User user = userRepository.findByUsername(userDetails.getUsername());
-      product.setCreator(user);
+      // 'User' 객체가 존재하면 Product에 설정
+      user.ifPresent(product::setCreator);
 
       // 상품 등록
       Product saveProduct = productRepository.save(product);

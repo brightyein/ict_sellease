@@ -11,6 +11,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,12 +37,25 @@ public class AuthAspect { // 인증된 사용자 확인 aspect
         throw new ApiException(ErrorCode.USER_NOT_FOUND);
       }
 
-      return joinPoint.proceed();
+      // 메서드의 인자 중 Optional<User>가 있다면 그곳에 User를 주입
+      Object[] args = joinPoint.getArgs();
+      for (int i = 0; i < args.length; i++) {
+        if (args[i] instanceof Optional) {
+          Optional<?> optionalArg = (Optional<?>) args[i];
+          if (optionalArg.isEmpty() || optionalArg.get() instanceof User) {
+            args[i] = Optional.of(user);  // User를 주입
+          }
+        }
+      }
+
+      // 변경된 인자를 사용해 메서드 실행
+      return joinPoint.proceed(args);
 
     } catch (ClassCastException e) {
       throw new ApiException(USER_NOT_FOUND);
+
     } catch (Exception e) {
-      throw new RuntimeException("상품 등록 중 문제가 발생했습니다.", e);
+      throw new RuntimeException("문제가 발생했습니다.", e);
     }
   }
 }
