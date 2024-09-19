@@ -35,18 +35,13 @@ public class ProductServiceImpl implements ProductService {
   @Override
   @AuthenticatedUser
   public Product saveProduct(Product product, List<MultipartFile> images) {
-    try {
+
       // 인증된 사용자 정보 추출
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
       // 추출한 정보로 User 객체 조회
       User user = userRepository.findByUsername(userDetails.getUsername());
-
-      if (user == null) {
-        throw new ApiException(USER_NOT_FOUND);
-      }
-
       product.setCreator(user);
 
       // 상품 등록
@@ -56,12 +51,6 @@ public class ProductServiceImpl implements ProductService {
       saveProduct.setProductThumbnails(productThumbnailService.uploadThumbnail(saveProduct, images));
 
       return saveProduct;
-    } catch (ClassCastException e) {
-      throw new ApiException(USER_NOT_FOUND);
-    } catch (Exception e) {
-      // 다른 예외에 대한 처리
-      throw new RuntimeException("상품 등록 중 문제가 발생했습니다.", e);
-    }
   }
 
   /* 상품 상세 조회 */

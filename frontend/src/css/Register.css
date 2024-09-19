@@ -1,0 +1,84 @@
+/* 폼 컨테이너 */
+.signup-form.form-container {
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 200px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 인풋 그룹 스타일 */
+.signup-form .input-group {
+  margin-bottom: 15px;
+}
+
+.signup-form .input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-form .input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* 입력 필드 포커스 시 스타일 */
+.signup-form .input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 버튼 스타일 */
+.signup-form .button-group {
+  text-align: center;
+}
+
+.signup-form .button-group button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px; /* 버튼 안의 패딩 추가 */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%; /* 버튼이 폼 너비에 맞춰지도록 설정 */
+  height: 45px; /* 고정된 높이 설정 */
+  display: flex; /* 플렉스 박스 사용 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  transition: background-color 0.3s ease;
+}
+
+.signup-form .button-group button:hover {
+  background-color: #0056b3;
+}
+
+/* 에러 메시지 스타일 */
+.signup-form .error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* 성공 메시지 스타일 */
+.signup-form .success-message {
+  color: green;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}

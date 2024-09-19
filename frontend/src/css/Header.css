@@ -44,11 +44,12 @@
   text-decoration: none;
   font-size: 1.2em; /* 폰트 크기 조정 */
   font-weight: bold;
+  font-size: medium;
 }
 
 #header-page .logo-link {
   display: inline-block;
-  margin-left: -300px; /* 로고 위치 조정 */
+  margin-left: -200px; /* 로고 위치 조정 */
 }
 
 #header-page .logo-image {
@@ -61,7 +62,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center; /* 메뉴 항목을 수직 중앙 정렬 */
-  margin-right: -16em; /* 네비게이션 전체를 더 오른쪽으로 이동 */
+  margin-right: -10em; /* 네비게이션 전체를 더 오른쪽으로 이동 */
 }
 
 #header-page nav ul li {
@@ -76,4 +77,19 @@
 
 #header-page nav ul li a:hover {
   color: #19B5FE;
+}
+
+/* 미디어 쿼리로 반응형 설정 */
+@media (max-width: 700px) {
+  #header-page .logo-image {
+    height: 5vw; /* 작은 화면에서는 로고 크기 줄임 */
+  }
+
+  #header-page nav ul {
+    margin-right: 0; /* 화면 크기에 맞춰 네비게이션 위치 조정 */
+  }
+
+  #header-page nav ul li {
+    margin-left: 1em; /* 작은 화면에서는 메뉴 간 간격 줄임 */
+  }
 }

@@ -26,7 +26,7 @@
 
 /* 모달 배경 스타일 */
 #shop-page .modal-overlay {
-  position: fixed; /* 화면 전체를 덮는 고정 위치 */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -50,6 +50,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
   position: relative;
   z-index: 1001; /* 모달 오버레이 위에 표시되도록 설정 */
+  overflow-y: auto; /* 모달이 창보다 클 때 스크롤 가능 */
 }
 
 /* 모달 닫기 버튼 스타일 초기화 */
@@ -107,6 +108,45 @@
   border-radius: 4px;
   font-size: 1rem;
 }
+
+/* 제목 */
+#shop-page .form-group #name {
+  width: 50%; /* 제목 입력 필드의 너비를 50%로 설정 */
+  height: 30px;
+  max-width: 500px; /* 제목의 최대 너비를 설정하여 글자 수 제한 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin: 0 auto; /* 제목을 가운데에 위치 */
+  text-align: center; /* 텍스트를 가운데 정렬 */
+  resize: none;
+}
+
+/* 가격 */
+#shop-page .form-group #price {
+  width: 30%; /* 가격 입력 필드의 너비를 30%로 설정 */
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* 설명 */
+#shop-page .form-group #description {
+  width: 100%; /* 설명 입력 필드의 너비를 100%로 설정 */
+  height: 150px; /* 설명 칸의 높이를 크게 설정 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  resize: none; /* 사용자가 크기를 직접 조절하지 못하도록 설정 */
+}
+
 
 /* 이미지 업로드 박스 스타일 */
 #shop-page .upload-box {
@@ -268,13 +308,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   flex: 1 1 calc(33.333% - 40px); /* 한 줄에 3개의 카드, 카드 사이 여백 포함 */
-  min-width: 250px; /* 최소 너비 설정 */
-  max-width: 300px; /* 최대 너비 설정 */
+  min-width: 250px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* 이미지를 가운데 정렬 */
   text-align: center;
-  margin-bottom: 20px; /* 카드 사이의 세로 간격 */
+  margin-bottom: 20px;
 }
 
 #shop-page .product-image {
@@ -283,6 +323,10 @@
   height: auto;
   border-radius: 8px;
   margin-bottom: 15px;
+  object-fit: cover; /* 이미지가 카드 크기에 맞게 잘리도록 설정 */
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* 이미지를 수평 중앙에 위치 */
 }
 
 #shop-page .product-name {
@@ -315,6 +359,7 @@
   align-items: center;  /* 수직 중앙 정렬 */
   justify-content: center; /* 수평 중앙 정렬 */
   height: 45px; /* 버튼 높이를 적절히 설정 */
+  text-align: center; /* 텍스트를 중앙에 위치 */
 }
 
 /* 더보기 버튼 호버 스타일 */

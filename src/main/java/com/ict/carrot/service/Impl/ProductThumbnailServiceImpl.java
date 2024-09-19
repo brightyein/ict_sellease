@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class ProductThumbnailServiceImpl implements ProductThumbnailService {
 
-  private final ProductThumbnailRepository itemThumbnailRepository;
+  private final ProductThumbnailRepository productThumbnailRepository;
 
   /* thumbnail 객체 db 저장 */
   @Override
@@ -27,13 +27,13 @@ public class ProductThumbnailServiceImpl implements ProductThumbnailService {
     List<ProductThumbnail> productThumbnails = new ArrayList<>();
     try {
       // 이미지 저장 경로
-      String uploadsDir = "src/main/resources/static/images/itemThumbnail/";
+      String uploadsDir = "src/main/resources/static/images/productThumbnail/";
 
       // db 에 thumbnail 객체 저장
       for(MultipartFile image : images) {
         String dbFilePath = saveImage(image, uploadsDir);
         ProductThumbnail thumbnail = new ProductThumbnail(product, dbFilePath);
-        productThumbnails.add(itemThumbnailRepository.save(thumbnail));
+        productThumbnails.add(productThumbnailRepository.save(thumbnail));
       }
 
     } catch (IOException e) {
@@ -49,7 +49,7 @@ public class ProductThumbnailServiceImpl implements ProductThumbnailService {
     // 경로 생성
     String filePath = uploadsDir + fileName;
     // db에 저장할 경로
-    String dbFilePath = "/images/itemThumbnail/" + fileName;
+    String dbFilePath = "/images/productThumbnail/" + fileName;
 
     // Path 객체 생성
     Path path = Paths.get(filePath);

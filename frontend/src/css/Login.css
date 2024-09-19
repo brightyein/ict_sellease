@@ -74,6 +74,10 @@ body, h1, p, form, input, button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
 }
 
 #login-page button[type="submit"]:hover {
@@ -86,4 +90,26 @@ body, h1, p, form, input, button {
   color: red;
   display: none;
   font-size: 14px;
+}
+
+/* 회원가입 안내 스타일 */
+#login-page .signup-prompt {
+  margin-top: auto; /* 자동으로 빈 공간을 채워서 하단에 고정 */
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 정렬 */
+  align-items: center;
+  width: 100%;
+  padding-top: 20px; /* 텍스트와 버튼 사이에 간격 추가 */
+  border-top: 1px solid #ccc; /* 위쪽에 구분선 추가 */
+  font-size: 14px;
+  color: #555;
+}
+
+#login-page .signup-prompt a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#login-page .signup-prompt a:hover {
+  text-decoration: underline;
 }
