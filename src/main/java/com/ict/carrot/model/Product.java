@@ -46,9 +46,4 @@ public class Product extends BaseTimeEntity{
   @JsonIgnore
   private Cart cart;
 
-  @ManyToOne
-  @JoinColumn(name = "orders_id")
-  @JsonIgnore
-  private Orders orders;
-
 }

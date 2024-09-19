@@ -20,9 +20,6 @@ public class Orders extends BaseTimeEntity{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-  private List<Product> products;
-
   @OneToOne(mappedBy = "orders")
   private Pay pay;
 
