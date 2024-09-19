@@ -36,14 +36,7 @@ public class AuthAspect { // 인증된 사용자 확인 aspect
         throw new ApiException(ErrorCode.USER_NOT_FOUND);
       }
 
-      // 대상 메서드의 인자로 `User`를 설정
-      Object[] args = joinPoint.getArgs();
-      for (int i = 0; i < args.length; i++) {
-        if (args[i] instanceof Product) {
-          ((Product) args[i]).setCreator(user);
-        }
-      }
-      return joinPoint.proceed(args);
+      return joinPoint.proceed();
 
     } catch (ClassCastException e) {
       throw new ApiException(USER_NOT_FOUND);

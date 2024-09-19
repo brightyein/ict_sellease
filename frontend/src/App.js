@@ -12,17 +12,19 @@ import axios from "axios";
 function App() {
   // App.js 에서 useEffect 로 한 번만 토큰 유효성을 검사하고, 이를 전역 상태로 관리
   const [username, setUsername] = useState(null);
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
-
     if (token) {
       axios.post('http://localhost:8080/auth/validate-token', { token, username: storedUsername })
       .then(response => {
-        if (response.data.isValid) {
+        console.log("Token validation response:", response.data); // 서버 응답 확인
+
+        if (response.data.valid) {
+          console.log("Token is valid");
           setUsername(storedUsername);
         } else {
+          console.warn("Token is invalid, removing from localStorage");
           localStorage.removeItem('token');
           localStorage.removeItem('username');
           setUsername(null);
@@ -34,6 +36,8 @@ function App() {
         localStorage.removeItem('username');
         setUsername(null);
       });
+    } else {
+      console.warn("No token or username found in localStorage");
     }
   }, []);
 
