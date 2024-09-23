@@ -66,4 +66,10 @@ public class CartServiceImpl implements CartService {
       return new SaveResponseDto(cart, true, "Product added to cart successfully");
     } else return new SaveResponseDto(null, false, "Product already in cart");
   }
+
+  @Override
+  @AuthenticatedUser
+  public Optional<Cart> getCart(Long userId, Optional<User> user) {
+    return cartRepository.findByUser(user);
+  }
 }
