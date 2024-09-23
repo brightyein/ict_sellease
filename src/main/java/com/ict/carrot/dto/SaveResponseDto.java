@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaveResponseDto {
+public class SaveResponseDto<T> {
 
-  private Object data;
+  private T data;
   private boolean result;
   private String message;
 

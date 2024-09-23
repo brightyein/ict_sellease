@@ -41,9 +41,8 @@ public class Product extends BaseTimeEntity{
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ProductThumbnail> productThumbnails = new ArrayList<>();
 
-  @ManyToOne
-  @JoinColumn(name = "cart_id")
-  @JsonIgnore
-  private Cart cart;
+  public enum PostStatus {
+    AVAILABLE, SOLD
+  }
 
 }

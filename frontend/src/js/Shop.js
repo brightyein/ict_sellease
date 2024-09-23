@@ -180,6 +180,29 @@ const MainContent = () => {
     navigate(`/product/${id}`);
   };
 
+  const addToCart = async (productId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post(`http://localhost:8080/cart/add/${productId}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
+          'Content-Type': 'application/json',
+        },
+      });
+      const saveResponse = response.data; // 서버에서 보낸 SaveResponseDto를 받음
+
+      if (saveResponse.result) {
+        alert(saveResponse.message);  // 성공 메시지를 보여줌
+      } else {
+        alert(`Failed: ${saveResponse.message}`);  // 실패 메시지를 보여줌
+      }
+      console.log(saveResponse.data);
+
+    } catch (error) {
+      console.error('장바구니 추가 중 오류 발생:', error);
+      alert('장바구니 추가 중 오류가 발생했습니다.');
+    }
+  }
 
   return (
       <main id="main-content">
@@ -196,6 +219,9 @@ const MainContent = () => {
                 <img src={product.productThumbnails[0]?.imagePath} alt={product.name} className="product-image" />
                 <h2 className="product-name">{product.name}</h2>
                 <p>{product.price}원</p>
+                <button onClick={() => addToCart(product.id)} className="add-to-cart-button">
+                  <i className="bi bi-cart-fill"></i>담기
+                </button>
               </div>
           ))}
         </div>
